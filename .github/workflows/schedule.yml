@@ -1,0 +1,45 @@
+name: Schedule Tests
+
+on:
+    schedule:
+        # (minuto hora dias_mes meses semana)
+        # minuto 0 - 59
+        # hora 0 - 23
+        # dias_mês 1 - 31 
+        # meses 1-12
+        # dias semana 0-6 (domingo a sábado) 
+        # Os valores podem ser separados po vírgulas, por exemplo, no minuto, coloco 40, 45 (representa que vai ser executado no minuto 40 e 45)
+        # ou separado por traço, que indica todos os valores do range, por exemplo, nos meses, coloco 1-4 (representa que só vai ser executado nos meses 1, 2, 3 e 4)
+        # Posso deixar * para utilizar todos os valores do range
+        - cron: '55 3 * * *' 
+
+jobs:
+    RunTest:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Clonar o projeto
+              uses: actions/checkout@v4
+
+            - name: Instalar Java 21
+              uses: actions/setup-java@v4
+              with:
+                java-version: '21'
+                distribution: 'adopt'
+                cache: 'maven'
+
+            - name: Executar testes
+              env:
+                is_pipeline: true
+              run: mvn test -Dtest=Runner -Dbrowser=firefox -Dheadless=true -Dis_pipeline=true
+
+            - name: Gerar relatório
+              if: always()
+              run: mvn cluecumber-report:reporting
+
+            - name: Arquivar relatório
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                name: report-smoke-tests-pr
+                path: '**/reports/'
