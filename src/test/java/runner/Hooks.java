@@ -10,10 +10,8 @@ public class Hooks {
 
     @Before
     public void start() throws Exception {
-        final String HEADLESS = System.getProperty("headless");
         final String BROWSER_COMANDO = System.getProperty("browser");
         DriverManager.Browsers browser;
-        boolean headless = false;
         if (BROWSER_COMANDO != null) {
             final String BROWSER_COMANDO_FORMATADO = BROWSER_COMANDO.trim().toUpperCase();
             switch (BROWSER_COMANDO_FORMATADO) {
@@ -27,12 +25,9 @@ public class Hooks {
         } else {
             browser = DriverManager.Browsers.FIREFOX;
         }
-        if(HEADLESS.equals("true")) {
-            headless = true;
-        }
-        DriverManager.startDriver(browser, headless);
-        DriverManager.driver.get("https://automationpratice.com.br");
-        DriverManager.driver.manage().window().maximize();
+        DriverManager.startDriver(browser);
+        DriverManager.getDriver().get("https://automationpratice.com.br");
+        DriverManager.getDriver().manage().window().maximize();
         Esperas.esperarPaginaCarregarCompletamente();
     }
 
