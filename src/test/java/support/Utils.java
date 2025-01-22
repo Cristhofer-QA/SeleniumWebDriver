@@ -10,7 +10,7 @@ public class Utils extends DriverManager {
 
     public static WebElement retornarWebElement(By elemento) throws Exception {
         try {
-            return driver.findElement(elemento);
+            return getDriver().findElement(elemento);
         } catch (Exception e) {
             throw new Exception(
                     "\n***** Erro ao encontrar o elemento: " + elemento

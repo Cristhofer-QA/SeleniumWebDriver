@@ -1,4 +1,4 @@
-@login
+@pipeline @login
 Feature: Login
   Eu como usuario que possuo cadastro no site QAzando shop
   Quero realizar o login no site

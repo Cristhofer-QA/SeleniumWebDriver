@@ -13,9 +13,9 @@ import runner.DriverManager;
 public class Esperas extends DriverManager {
 
     public static void esperarPaginaCarregarCompletamente() throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
         try {
-            wait.until(driver1 -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+            wait.until(driver1 -> ((JavascriptExecutor) getDriver()).executeScript("return document.readyState").equals("complete"));
         } catch (Exception e) {
             System.err.println("***** A página não carregou em 30 segundos!");
             throw new Exception();
@@ -23,7 +23,7 @@ public class Esperas extends DriverManager {
     }
 
     public static void esperarElementoVisivel(By seletorElemento) throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(seletorElemento));
         } catch (Exception e) {
@@ -33,7 +33,7 @@ public class Esperas extends DriverManager {
     }
 
     public static void esperarElementoClicavel(By seletorElemento) throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(seletorElemento));
         } catch (Exception e) {
@@ -43,7 +43,7 @@ public class Esperas extends DriverManager {
     }
 
     public static void esperarElementoClicavel(WebElement elemento) throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
         try {
             wait.until(ExpectedConditions.elementToBeClickable(elemento));
         } catch (Exception e) {
@@ -53,7 +53,7 @@ public class Esperas extends DriverManager {
     }
 
     public static void esperarElementoForaDom(By elemento) throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
         try {
             wait.until(ExpectedConditions.invisibilityOfElementLocated(elemento));
         } catch (Exception e) {

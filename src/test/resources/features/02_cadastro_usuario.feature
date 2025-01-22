@@ -1,4 +1,4 @@
-@cadastro_usuario
+@pipeline @cadastro_usuario
 Feature: Cadastro de usuário
   Eu como um futuro usuário do site QAzando shop
   Quero realizar o cadastro no site
