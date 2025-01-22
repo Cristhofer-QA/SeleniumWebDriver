@@ -11,7 +11,7 @@ on:
         # Os valores podem ser separados po vírgulas, por exemplo, no minuto, coloco 40, 45 (representa que vai ser executado no minuto 40 e 45)
         # ou separado por traço, que indica todos os valores do range, por exemplo, nos meses, coloco 1-4 (representa que só vai ser executado nos meses 1, 2, 3 e 4)
         # Posso deixar * para utilizar todos os valores do range
-        - cron: '50 3 * * *' 
+        - cron: '55 3 * * *' 
 
 jobs:
     RunTest:
