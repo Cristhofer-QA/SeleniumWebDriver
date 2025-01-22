@@ -15,7 +15,7 @@ public class DriverManager {
         CHROME;
     }
 
-    protected static void getDriver(Browsers browser, boolean headless) {
+    protected static void startDriver(Browsers browser, boolean headless) {
         switch (browser) {
             case FIREFOX -> {
                 System.setProperty("webdriver.gecko.driver", "drivers/geckodriver.exe");
