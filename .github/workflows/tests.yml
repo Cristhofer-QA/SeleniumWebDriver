@@ -19,7 +19,16 @@ jobs:
                 distribution: 'adopt'
                 cache: 'maven'
 
-            - name: Run Testes
+            - name: Executar testes
               env:
                 is_pipeline: true
               run: mvn test -Dtest=Runner -Dbrowser=firefox -Dheadless=true -Dis_pipeline=true
+
+            - name: Gerar relatório
+              run: mvn cluecumber-report:reporting
+
+            - name: Arquivar relatório
+              uses: actions/upload-artifact@v4
+              with:
+                name: report-smoke-tests-pr
+                path: '**/reports/'
