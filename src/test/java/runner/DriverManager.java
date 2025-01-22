@@ -22,6 +22,8 @@ public class DriverManager {
         //Caso seja executado via pipeline, o próprio drivermanager vai fazer a gestão dos drivers.
         final boolean IS_HEADLESS = Boolean.parseBoolean(System.getProperty("headless", "false"));
         final boolean IS_PIPELINE = Boolean.parseBoolean(System.getenv("is_pipeline"));
+        System.out.println("***** IS_HEADLESS:" + IS_HEADLESS);
+        System.out.println("***** IS_PIPELINE:" + IS_PIPELINE);
 
         switch (browser) {
             case FIREFOX -> {

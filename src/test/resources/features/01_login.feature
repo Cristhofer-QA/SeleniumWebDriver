@@ -15,8 +15,8 @@ Feature: Login
 
     Examples:
       | usuario           | senha      | cenario                                          |
-      | cristhofer@qa.com | testeSenha | Senha apenas com letras                          |
-      | cristhofer@qa.com | 1234569878 | Senha apenas com números                         |
+      | cristhofer@qa.com | enha | Senha apenas com letras                          |
+      | cristhofer@qa.com | 19878 | Senha apenas com números                         |
       | cristhofer@qa.com | Teste001#@ | Senha com letras, números e caracteres especiais |
 
   Scenario Outline: Login incorreto: <cenario>
