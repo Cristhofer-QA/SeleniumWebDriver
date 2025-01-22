@@ -28,5 +28,5 @@ Feature: Login
       | usuario           | senha      | mensagem         | cenario          |
       | Cristhofer        | testeSenha | E-mail inválido. | e-mail incorreto |
       |                   | 1234569878 | E-mail inválido. | e-mail vazio     |
-      | cristhofer@qa.com | 8880154A | Senha inválida.  | senha incorreta  |
+      | cristhofer@qa.com |      0154A | Senha inválida.  | senha incorreta  |
       | cristhofer@qa.com |            | Senha inválida.  | senha vazia      |
