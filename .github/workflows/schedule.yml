@@ -12,6 +12,7 @@ on:
         # ou separado por traço, que indica todos os valores do range, por exemplo, nos meses, coloco 1-4 (representa que só vai ser executado nos meses 1, 2, 3 e 4)
         # Posso deixar * para utilizar todos os valores do range
         - cron: '36 * * * *' 
+    workflow_dispatch:
 
 jobs:
     RunTest:
