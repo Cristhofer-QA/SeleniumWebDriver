@@ -34,3 +34,25 @@ jobs:
               with:
                 name: report-smoke-tests-pr
                 path: '**/reports/'
+
+            - name: Enviar notificação Slack - Sucesso
+              if: ${{ success() }}
+              uses: rtCamp/action-slack-notify@v2
+              env:
+                SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+                SLACK_COLOR: ${{ job.status }}
+                SLACK_ICON: https://cdn-icons-png.flaticon.com/512/16104/16104958.png?size=48
+                SLACK_MESSAGE: 'Sucesso na execução do Smoke Tests - PR! :white_check_mark:'
+                SLACK_TITLE: 'Sucesso na execução do Smoke Tests - PR! :white_check_mark:'
+                SLACK_USERNAME: Bot_Sucesso
+
+            - name: Enviar notificação Slack - Falha
+              if: ${{ failure() }}
+              uses: rtCamp/action-slack-notify@v2
+              env:
+                SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+                SLACK_COLOR: ${{ job.status }}
+                SLACK_ICON: https://cdn-icons-png.flaticon.com/512/1828/1828843.png?size=48
+                SLACK_MESSAGE: 'Erro na execução do Smoke Tests - PR! :fire:'
+                SLACK_TITLE: 'Erro na execução do Smoke Tests - PR! :x:'
+                SLACK_USERNAME: Bot_Falha
