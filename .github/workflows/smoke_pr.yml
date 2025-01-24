@@ -44,10 +44,10 @@ jobs:
                 SLACK_ICON: https://cdn-icons-png.flaticon.com/512/16104/16104958.png?size=48
                 SLACK_TITLE: 'Sucesso na execução do Smoke Tests - PR! :white_check_mark:'
                 SLACK_MESSAGE: |
-                  Relatório da automação gerado! 🚀
+                  Relatório da automação gerado! :rocket:
                   Baixe o relatório aqui:
-                  [Download do Relatório](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)
-                SLACK_USERNAME: Bot_Sucesso
+                  [Download do Relatório](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+                SLACK_USERNAME: SUCESSO
 
             - name: Enviar notificação Slack - Falha
               if: ${{ failure() }}
@@ -56,6 +56,9 @@ jobs:
                 SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
                 SLACK_COLOR: ${{ job.status }}
                 SLACK_ICON: https://cdn-icons-png.flaticon.com/512/1828/1828843.png?size=48
-                SLACK_MESSAGE: 'Erro na execução do Smoke Tests - PR! :fire:'
                 SLACK_TITLE: 'Erro na execução do Smoke Tests - PR! :x:'
-                SLACK_USERNAME: Bot_Falha
+                SLACK_MESSAGE:  |
+                  Relatório da automação gerado! :fire:
+                  Baixe o relatório aqui:
+                  [Download do Relatório](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+                SLACK_USERNAME: FALHA
