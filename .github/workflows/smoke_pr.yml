@@ -22,7 +22,7 @@ jobs:
             - name: Executar testes
               env:
                 is_pipeline: true
-              run: mvn test -Dtest=Runner -Dbrowser=firefox -Dheadless=true -Dis_pipeline=true
+              run: mvn test -Dtest=Runner -Dbrowser=firefox -Dheadless=true -Dis_pipeline=true -Dtags=@login
 
             - name: Gerar relatório
               if: always()

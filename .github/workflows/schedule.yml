@@ -32,7 +32,7 @@ jobs:
             - name: Executar testes
               env:
                 is_pipeline: true
-              run: mvn test -Dtest=Runner -Dbrowser=firefox -Dheadless=true -Dis_pipeline=true
+              run: mvn test -Dtest=Runner -Dbrowser=firefox -Dheadless=true -Dis_pipeline=true -Dtags=@pipeline
 
             - name: Gerar relatório
               if: always()
@@ -42,5 +42,5 @@ jobs:
               if: always()
               uses: actions/upload-artifact@v4
               with:
-                name: report-smoke-tests-pr
+                name: report-test-schedule-pr
                 path: '**/reports/'

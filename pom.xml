@@ -94,6 +94,9 @@
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <testFailureIgnore>false</testFailureIgnore>
+                    <systemPropertyVariables>
+                        <cucumber.filter.tags>${tags}</cucumber.filter.tags>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>
