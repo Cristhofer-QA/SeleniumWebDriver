@@ -42,8 +42,11 @@ jobs:
                 SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
                 SLACK_COLOR: ${{ job.status }}
                 SLACK_ICON: https://cdn-icons-png.flaticon.com/512/16104/16104958.png?size=48
-                SLACK_MESSAGE: 'Sucesso na execução do Smoke Tests - PR! :white_check_mark:'
                 SLACK_TITLE: 'Sucesso na execução do Smoke Tests - PR! :white_check_mark:'
+                SLACK_MESSAGE: |
+                  Relatório da automação gerado! 🚀
+                  Baixe o relatório aqui:
+                  [Download do Relatório](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)
                 SLACK_USERNAME: Bot_Sucesso
 
             - name: Enviar notificação Slack - Falha
