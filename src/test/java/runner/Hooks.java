@@ -1,10 +1,13 @@
 package runner;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.Status;
 import report.TestReportManager;
@@ -13,7 +16,10 @@ import support.Esperas;
 import support.Screenshot;
 
 public class Hooks {
+
     static TestReportVariables testExecutionVariables = new TestReportVariables();
+    private Instant startTime;
+
     @Before
     public void start() throws Exception {
         final String BROWSER_COMANDO = System.getProperty("browser");
@@ -50,15 +56,20 @@ public class Hooks {
         DriverManager.quitDriver();
     }
 
+    @BeforeAll
+    public void beforeAll() {
+        this.startTime = Instant.now();
+    }
+
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
+        Instant endTime = Instant.now();
+        long duration = Duration.between(startTime, endTime).toSeconds();
+        testExecutionVariables.setTempoExecucao(duration);
         try {
-            System.out.println("***** Quantidade total de testes: " + testExecutionVariables.getQtdTotal());
-            System.out.println("***** Quantidade de testes com sucesso: " + testExecutionVariables.getQtdSucesso());
-            System.out.println("***** Quantidade de testes com erro: " + testExecutionVariables.getQtdErro());
             TestReportManager.saveReport(testExecutionVariables);
         } catch (IOException e) {
             throw new RuntimeException("\n***** Erro ao salvar o relatório de testes: " + e.getMessage());
         }
     }
-} 
+}

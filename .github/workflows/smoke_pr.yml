@@ -43,14 +43,12 @@ jobs:
                 total=$(echo $report | jq -r '.total')
                 success=$(echo $report | jq -r '.success')
                 error=$(echo $report | jq -r '.error')
-
-                echo "Total: $total"
-                echo "Success: $success"
-                echo "Error: $error"
+                seconds=$(echo $report | jq -r '.seconds')
 
                 echo "TOTAL=$total" >> $GITHUB_ENV
                 echo "SUCCESS=$success" >> $GITHUB_ENV
                 echo "ERROR=$error" >> $GITHUB_ENV
+                echo "SECONDS=$seconds" >> $GITHUB_ENV
 
             - name: Enviar notificação Slack - Sucesso
               if: ${{ success() }}
@@ -59,13 +57,13 @@ jobs:
                 SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
                 SLACK_COLOR: ${{ job.status }}
                 SLACK_ICON: https://cdn-icons-png.flaticon.com/512/16104/16104958.png?size=48
-                SLACK_TITLE: 'Sucesso na execução do Smoke Tests - PR! :white_check_mark:'
+                SLACK_TITLE: 'TESTES DA PIPELINE "Smoke Tests - PR" EXECUTADOS COM SUCESSO! :white_check_mark:'
                 SLACK_MESSAGE: |
-                  Relatório da automação gerado! :rocket:
-                  Cenários Totais: ${{ env.TOTAL }}
-                  Cenários com Sucesso: ${{ env.SUCCESS }}
-                  Cenários com Erro: ${{ env.ERROR }}
-                  Baixe o relatório aqui: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+                       Quantidade de cenários: ${{ env.TOTAL }}
+                       Cenários com Sucesso: ${{ env.SUCCESS }}
+                       Cenários com Erro: ${{ env.ERROR }}
+                       Tempo de execução: ${{ env.SECONDS }} segundos
+                       [Clique aqui para baixar o relatório](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
                 SLACK_USERNAME: SUCESSO
 
             - name: Enviar notificação Slack - Falha
@@ -75,11 +73,11 @@ jobs:
                 SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
                 SLACK_COLOR: ${{ job.status }}
                 SLACK_ICON: https://cdn-icons-png.flaticon.com/512/1828/1828843.png?size=48
-                SLACK_TITLE: 'Erro na execução do Smoke Tests - PR! :x:'
+                SLACK_TITLE: 'TESTES DA PIPELINE "Smoke Tests - PR" EXECUTADOS COM ERRO! :x:'
                 SLACK_MESSAGE:  |
-                  Relatório da automação gerado! :rocket:
-                  Cenários Totais: ${{ env.TOTAL }}
-                  Cenários com Sucesso: ${{ env.SUCCESS }}
-                  Cenários com Erro: ${{ env.ERROR }}
-                  Baixe o relatório aqui: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+                       Quantidade de cenários: ${{ env.TOTAL }}
+                       Cenários com Sucesso: ${{ env.SUCCESS }}
+                       Cenários com Erro: ${{ env.ERROR }}
+                       Tempo de execução: ${{ env.SECONDS }} segundos
+                       [Clique aqui para baixar o relatório](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
                 SLACK_USERNAME: FALHA
