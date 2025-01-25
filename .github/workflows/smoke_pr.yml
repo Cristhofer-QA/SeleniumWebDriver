@@ -59,11 +59,11 @@ jobs:
                 SLACK_ICON: https://cdn-icons-png.flaticon.com/512/16104/16104958.png?size=48
                 SLACK_TITLE: 'TESTES DA PIPELINE "Smoke Tests - PR" EXECUTADOS COM SUCESSO! :white_check_mark:'
                 SLACK_MESSAGE: |
-                       Quantidade de cenários: ${{ env.TOTAL }}
-                       Cenários com Sucesso: ${{ env.SUCCESS }}
-                       Cenários com Erro: ${{ env.ERROR }}
-                       Tempo de execução: ${{ env.SECONDS }} segundos
-                       [Clique aqui para baixar o relatório](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+                       * Quantidade de cenários: ${{ env.TOTAL }}
+                       * Cenários com Sucesso: ${{ env.SUCCESS }}
+                       * Cenários com Erro: ${{ env.ERROR }}
+                       * Tempo de execução: ${{ env.SECONDS }} segundos
+                       <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Clique aqui para baixar o relatório>
                 SLACK_USERNAME: SUCESSO
 
             - name: Enviar notificação Slack - Falha
@@ -75,9 +75,9 @@ jobs:
                 SLACK_ICON: https://cdn-icons-png.flaticon.com/512/1828/1828843.png?size=48
                 SLACK_TITLE: 'TESTES DA PIPELINE "Smoke Tests - PR" EXECUTADOS COM ERRO! :x:'
                 SLACK_MESSAGE:  |
-                       Quantidade de cenários: ${{ env.TOTAL }}
-                       Cenários com Sucesso: ${{ env.SUCCESS }}
-                       Cenários com Erro: ${{ env.ERROR }}
-                       Tempo de execução: ${{ env.SECONDS }} segundos
-                       [Clique aqui para baixar o relatório](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+                       * Quantidade de cenários: ${{ env.TOTAL }}
+                       * Cenários com Sucesso: ${{ env.SUCCESS }}
+                       * Cenários com Erro: ${{ env.ERROR }}
+                       * Tempo de execução: ${{ env.SECONDS }} segundos
+                       <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}|Clique aqui para baixar o relatório>
                 SLACK_USERNAME: FALHA
