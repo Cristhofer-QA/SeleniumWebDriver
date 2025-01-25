@@ -23,5 +23,5 @@ Feature: Cadastro de usuário
       | Usuario Sem Email          |                           | ABC25@t | O campo e-mail deve ser prenchido corretamente | Cadastro sem e-mail                       |
       | Usuário Sem Senha          | teste_sem_senha@teste.com |         | O campo senha deve ter pelo menos 6 dígitos    | Cadastro sem senha                        |
       | Usuário Com Email Inválido | email_invalido.com        | Senha05 | O campo e-mail deve ser prenchido corretamente | Cadastro com email inválido               |
-      | Usuário Com Senha Inválida | senha_invalida@teste.com  | Pass1   | O campo senha deve ter pelo menos 6 dígitos    | Cadastro com senha com menos de 6 dígitos |
+      | Usuário Com Senha Inválida | senha_invalida@teste.com  | Pasdsadasdass1   | O campo senha deve ter pelo menos 6 dígitos    | Cadastro com senha com menos de 6 dígitos |
       # O texto "prenchido" pode ser que altere futuramente

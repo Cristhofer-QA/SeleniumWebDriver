@@ -53,6 +53,9 @@ public class Hooks {
     @AfterAll
     public static void afterAll() {
         try {
+            System.out.println("***** Quantidade total de testes: " + testExecutionVariables.getQtdTotal());
+            System.out.println("***** Quantidade de testes com sucesso: " + testExecutionVariables.getQtdSucesso());
+            System.out.println("***** Quantidade de testes com erro: " + testExecutionVariables.getQtdErro());
             TestReportManager.saveReport(testExecutionVariables);
         } catch (IOException e) {
             throw new RuntimeException("\n***** Erro ao salvar o relatório de testes: " + e.getMessage());

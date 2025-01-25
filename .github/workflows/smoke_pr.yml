@@ -22,7 +22,7 @@ jobs:
             - name: Executar testes
               env:
                 is_pipeline: true
-              run: mvn test -Dtest=Runner -Dbrowser=firefox -Dheadless=true -Dtags=@login
+              run: mvn test -Dtest=Runner -Dbrowser=firefox -Dheadless=true -Dtags=@pipeline
 
             - name: Gerar relatório
               if: always()
@@ -43,6 +43,10 @@ jobs:
                 total=$(echo $report | jq -r '.total')
                 success=$(echo $report | jq -r '.success')
                 error=$(echo $report | jq -r '.error')
+
+                echo "Total: $total"
+                echo "Success: $success"
+                echo "Error: $error"
 
                 echo "TOTAL=$total" >> $GITHUB_ENV
                 echo "SUCCESS=$success" >> $GITHUB_ENV
