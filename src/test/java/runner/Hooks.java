@@ -18,7 +18,7 @@ import support.Screenshot;
 public class Hooks {
 
     static TestReportVariables testExecutionVariables = new TestReportVariables();
-    private Instant startTime;
+    private static Instant startTime;
 
     @Before
     public void start() throws Exception {
@@ -57,12 +57,12 @@ public class Hooks {
     }
 
     @BeforeAll
-    public void beforeAll() {
-        this.startTime = Instant.now();
+    public static void beforeAll() {
+        startTime = Instant.now();
     }
 
     @AfterAll
-    public void afterAll() {
+    public static void afterAll() {
         Instant endTime = Instant.now();
         long duration = Duration.between(startTime, endTime).toSeconds();
         testExecutionVariables.setTempoExecucao(duration);
