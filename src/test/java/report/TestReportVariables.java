@@ -13,16 +13,11 @@ public class TestReportVariables {
     @JsonProperty("error")
     private int qtdErro = 0;
 
-    public int getQtdTotal() {
-        return qtdTotal;
-    }
+    @JsonProperty("seconds")
+    private long tempoExecucao;
 
-    public int getQtdSucesso() {
-        return qtdSucesso;
-    }
-
-    public int getQtdErro() {
-        return qtdErro;
+    public void setTempoExecucao(long duration) {
+        tempoExecucao = duration;
     }
 
     public void incrementTotal() {
