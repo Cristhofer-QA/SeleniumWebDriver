@@ -13,7 +13,7 @@ import support.Esperas;
 import support.Screenshot;
 
 public class Hooks {
-    TestReportVariables testExecutionVariables = new TestReportVariables();
+    static TestReportVariables testExecutionVariables = new TestReportVariables();
     @Before
     public void start() throws Exception {
         final String BROWSER_COMANDO = System.getProperty("browser");
@@ -51,7 +51,7 @@ public class Hooks {
     }
 
     @AfterAll
-    public void afterAll() {
+    public static void afterAll() {
         try {
             TestReportManager.saveReport(testExecutionVariables);
         } catch (IOException e) {
