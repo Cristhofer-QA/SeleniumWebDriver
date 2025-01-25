@@ -7,15 +7,15 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.Status;
-import report.TestExecutionReport;
 import report.TestReportManager;
+import report.TestReportVariables;
 import support.Esperas;
 import support.Screenshot;
 
 public class Hooks {
-
+    TestReportVariables testExecutionVariables = new TestReportVariables();
     @Before
-    public static void start() throws Exception {
+    public void start() throws Exception {
         final String BROWSER_COMANDO = System.getProperty("browser");
         DriverManager.Browsers browser;
         if (BROWSER_COMANDO != null) {
@@ -38,22 +38,22 @@ public class Hooks {
     }
 
     @After
-    public static void stop(Scenario scenario) {
+    public void stop(Scenario scenario) {
         if (scenario.isFailed()) {
             Screenshot.adicionarScreenshotEmCenario(scenario);
-            TestExecutionReport.incrementError();
+            testExecutionVariables.incrementError();
         }
         if (scenario.getStatus() == Status.PASSED) {
-            TestExecutionReport.incrementSuccess();
+            testExecutionVariables.incrementSuccess();
         }
-        TestExecutionReport.incrementTotal();
+        testExecutionVariables.incrementTotal();
         DriverManager.quitDriver();
     }
 
     @AfterAll
-    public static void afterAll() {
+    public void afterAll() {
         try {
-            TestReportManager.saveReport();
+            TestReportManager.saveReport(testExecutionVariables);
         } catch (IOException e) {
             throw new RuntimeException("\n***** Erro ao salvar o relatório de testes: " + e.getMessage());
         }
