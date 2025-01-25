@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        tags = "@pipeline",
+        tags = "@login",
         features = {"src/test/resources/features"},
         glue = {"steps", "runner"},
         plugin = {
