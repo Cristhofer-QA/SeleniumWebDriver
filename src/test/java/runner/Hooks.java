@@ -61,4 +61,4 @@ public class Hooks {
             throw new RuntimeException("\n***** Erro ao salvar o relatório de testes: " + e.getMessage());
         }
     }
-}
+} 
