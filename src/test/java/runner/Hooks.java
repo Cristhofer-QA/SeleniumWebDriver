@@ -1,10 +1,13 @@
 package runner;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 
 import io.cucumber.java.After;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.Status;
 import report.TestReportManager;
@@ -13,7 +16,10 @@ import support.Esperas;
 import support.Screenshot;
 
 public class Hooks {
+
     static TestReportVariables testExecutionVariables = new TestReportVariables();
+    private static Instant startTime;
+
     @Before
     public void start() throws Exception {
         final String BROWSER_COMANDO = System.getProperty("browser");
@@ -50,8 +56,16 @@ public class Hooks {
         DriverManager.quitDriver();
     }
 
+    @BeforeAll
+    public static void beforeAll() {
+        startTime = Instant.now();
+    }
+
     @AfterAll
     public static void afterAll() {
+        Instant endTime = Instant.now();
+        long duration = Duration.between(startTime, endTime).toSeconds();
+        testExecutionVariables.setTempoExecucao(duration);
         try {
             TestReportManager.saveReport(testExecutionVariables);
         } catch (IOException e) {
